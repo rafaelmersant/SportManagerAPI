@@ -20,16 +20,16 @@ class DocumentSerializer(serializers.HyperlinkedModelSerializer):
 
 class AthleteSerializer(serializers.HyperlinkedModelSerializer):
     parent = ParentSerializer(many=False, read_only=True)
-    parent_id = serializers.IntegerField(write_only=True)
 
     document = DocumentSerializer(many=False, read_only=True)
-    document_id = serializers.IntegerField(write_only=True)
+
+    birthday = serializers.DateField(
+        format="%m-%d-%Y", input_formats=['%Y-%m-%d', 'iso-8601'])
 
     class Meta:
         model = Athlete
         fields = ('id', 'first_name', 'last_name', 'email',
                   'phone_number', 'photo', 'address', 'birthday',
                   'enrollment_year', 'enrollment_month',
-                  'medical_information', 'creation_date',
-                  'created_user', 'parent', 'parent_id',
-                  'document', 'document_id')
+                  'medical_information', 'age', 'creation_date',
+                  'created_user', 'parent', 'document')

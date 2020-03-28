@@ -49,12 +49,11 @@ class UserLogin(generics.ListCreateAPIView):
             password = body['password']
 
             user = User.objects.filter(email=email, password=password)
-
             if user.count() > 0:
                 return Response({"id": user[0].id,
                                  "email": user[0].email,
                                  "name": user[0].name,
-                                 "role": user[0].userRole},
+                                 "role": user[0].user_role},
                                 status=status.HTTP_200_OK)
 
             return Response("null", status=status.HTTP_404_NOT_FOUND)

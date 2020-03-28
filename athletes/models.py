@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class Athlete(models.Model):
@@ -17,12 +18,18 @@ class Athlete(models.Model):
     created_user = models.EmailField(null=True, blank=True)
     objects = models.Manager()
 
+    @property
+    def age(self):
+        age_ = (datetime.date.today() - self.birthday) / 365
+        return age_.days
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
 
 class Parent(models.Model):
-    athlete = models.ForeignKey(Athlete, on_delete=models.CASCADE, null=True)
+    athlete = models.ForeignKey(
+        Athlete, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True)
@@ -35,7 +42,8 @@ class Parent(models.Model):
 
 
 class Document(models.Model):
-    athlete = models.ForeignKey(Athlete, on_delete=models.CASCADE, null=True)
+    athlete = models.ForeignKey(
+        Athlete, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100)
     image = models.CharField(max_length=255)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
