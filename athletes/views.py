@@ -27,7 +27,8 @@ class AthleteList(generics.ListCreateAPIView):
     # pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['id', 'first_name', 'last_name', 'email',
-                        'phone_number', 'medical_information']
+                        'phone_number', 'medical_information',
+                        'parent', 'document']
     search_fields = ['first_name', 'last_name', 'phone_number', 'email']
 
     def delete(self, request, pk=None):
@@ -56,8 +57,8 @@ class ParentList(generics.ListCreateAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['id', 'name', 'phone_number', 'email']
-    search_fields = ['name', 'phone_number', 'email']
+    filterset_fields = ['id', 'name', 'phone_number', 'email', 'athlete_id']
+    search_fields = ['name', 'phone_number', 'email', 'athlete_id']
 
     def delete(self, request, pk=None):
         try:

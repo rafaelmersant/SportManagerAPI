@@ -29,9 +29,9 @@ class Athlete(models.Model):
 
 class Parent(models.Model):
     athlete = models.ForeignKey(
-        Athlete, on_delete=models.CASCADE, blank=True, null=True)
+        Athlete, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
     created_user = models.EmailField(null=True, blank=True)
