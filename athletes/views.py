@@ -87,8 +87,8 @@ class DocumentList(generics.ListCreateAPIView):
     serializer_class = DocumentSerializer
     # pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['id', 'title', 'image']
-    search_fields = ['title', 'image', ]
+    filterset_fields = ['id', 'title', 'document_filename', 'athlete_id']
+    search_fields = ['title', 'document_filename', ]
 
     def delete(self, request, pk=None):
         try:

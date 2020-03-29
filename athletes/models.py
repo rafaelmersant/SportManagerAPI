@@ -8,6 +8,7 @@ class Athlete(models.Model):
     email = models.EmailField(null=True, blank=True)
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     photo = models.CharField(max_length=255, null=True, blank=True)
+    photo_filename = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     enrollment_year = models.IntegerField()
@@ -45,7 +46,8 @@ class Document(models.Model):
     athlete = models.ForeignKey(
         Athlete, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100)
-    image = models.CharField(max_length=255)
+    document_url = models.CharField(max_length=255)
+    document_filename = models.CharField(max_length=255, null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
     created_user = models.EmailField(null=True, blank=True)
     objects = models.Manager()

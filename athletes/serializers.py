@@ -10,8 +10,8 @@ class AthleteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Athlete
         fields = ('id', 'first_name', 'last_name', 'email',
-                  'phone_number', 'photo', 'address', 'birthday',
-                  'enrollment_year', 'enrollment_month',
+                  'phone_number', 'photo', 'photo_filename', 'address',
+                  'birthday', 'enrollment_year', 'enrollment_month',
                   'medical_information', 'age', 'creation_date',
                   'created_user')
 
@@ -33,5 +33,5 @@ class DocumentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Document
-        fields = ('id', 'title', 'image', 'creation_date',
-                  'created_user', 'athlete', 'athlete_id')
+        fields = ('id', 'title', 'document_url', 'document_filename',
+                  'creation_date', 'created_user', 'athlete', 'athlete_id')
