@@ -23,10 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c#*6z*t2(p4pt!@euwbcbg&x^8@9i^^mo%q=)!_w2!zik-xia0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -105,8 +104,13 @@ WSGI_APPLICATION = 'sportManagerAPI.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'fenix_db',
+        'USER': 'fenix',
+        'PASSWORD': 'Fenix!123',
+        'OPTIONS': {
+            'autocommit': True,
+            },
     }
 }
 
