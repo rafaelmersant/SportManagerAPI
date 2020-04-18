@@ -1,4 +1,6 @@
 
+sportManagerAPI/settings.py
+
 # Django #
 *.log
 *.pot
