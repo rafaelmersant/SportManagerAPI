@@ -21,8 +21,11 @@ class Athlete(models.Model):
 
     @property
     def age(self):
-        age_ = (datetime.date.today() - self.birthday) / 365
-        return age_.days
+        try:
+            age_ = (datetime.date.today() - self.birthday) / 365
+            return age_.days
+        except:
+            age_ = 0
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
