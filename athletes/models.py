@@ -11,8 +11,8 @@ class Athlete(models.Model):
     photo_filename = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
-    enrollment_year = models.IntegerField()
-    enrollment_month = models.IntegerField()
+    enrollment_year = models.IntegerField(default=0)
+    enrollment_month = models.IntegerField(default=0)
     medical_information = models.CharField(
         max_length=255, null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
