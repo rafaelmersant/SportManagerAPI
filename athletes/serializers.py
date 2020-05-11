@@ -4,8 +4,8 @@ from rest_framework import serializers
 
 class AthleteSerializer(serializers.HyperlinkedModelSerializer):
 
-    birthday = serializers.DateField(
-        format="%m-%d-%Y", input_formats=['%Y-%m-%d', 'iso-8601'])
+    # birthday = serializers.DateField(
+    #     format="%Y-%m-%d", input_formats=['%Y-%m-%d', 'iso-8601'])
 
     class Meta:
         model = Athlete
