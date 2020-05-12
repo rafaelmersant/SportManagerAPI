@@ -15,6 +15,7 @@ class Athlete(models.Model):
     enrollment_month = models.IntegerField(default=0)
     medical_information = models.CharField(
         max_length=255, null=True, blank=True)
+    category = models.CharField(max_length=20, default="")
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
     created_user = models.EmailField(null=True, blank=True)
     objects = models.Manager()

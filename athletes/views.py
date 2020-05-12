@@ -27,7 +27,7 @@ class AthleteList(generics.ListCreateAPIView):
     # pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['id', 'first_name', 'last_name', 'email',
-                        'phone_number', 'medical_information',
+                        'phone_number', 'medical_information', 'category',
                         'parent', 'document']
     search_fields = ['first_name', 'last_name', 'phone_number', 'email']
 
