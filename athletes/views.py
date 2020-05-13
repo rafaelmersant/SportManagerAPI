@@ -24,7 +24,7 @@ class StandardResultsSetPaginationLevel2(PageNumberPagination):
 class AthleteList(generics.ListCreateAPIView):
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
-    # pagination_class = StandardResultsSetPagination
+    pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['id', 'first_name', 'last_name', 'email',
                         'phone_number', 'medical_information', 'category',
