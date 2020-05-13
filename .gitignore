@@ -28,3 +28,4 @@ media
 !.vscode/extensions.json 
 .history
 
+*.pyc
