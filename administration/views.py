@@ -13,7 +13,8 @@ class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'email', 'name',
-                        'user_role', 'user_hash', 'creation_date']
+                        'user_role', 'user_hash',
+                        'creation_date', 'athlete_id']
 
     def delete(self, request, pk=None):
         try:
@@ -53,7 +54,9 @@ class UserLogin(generics.ListCreateAPIView):
                 return Response({"id": user[0].id,
                                  "email": user[0].email,
                                  "name": user[0].name,
-                                 "role": user[0].user_role},
+                                 "role": user[0].user_role,
+                                 "athlete_id": user[0].athlete_id
+                                 },
                                 status=status.HTTP_200_OK)
 
             return Response("null", status=status.HTTP_404_NOT_FOUND)

@@ -7,6 +7,7 @@ class User(models.Model):
     name = models.CharField(max_length=255)
     user_hash = models.CharField(max_length=255, blank=True)
     user_role = models.CharField(max_length=20, blank=True)
+    athlete_id = models.IntegerField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
     created_user = models.EmailField()
     objects = models.Manager()
