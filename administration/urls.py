@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from administration.views import UserList, UserLogin
+from administration.views import UserList, UserLogin, UserInfo
 
 urlpatterns = [
+    url(r'^userInfo/$', UserInfo.as_view(), name='userInfo'),
     url(r'^users/$', UserList.as_view(), name='users'),
     url(r'^users/(?P<pk>[0-9]+)', UserList.as_view(),
         name='user_byId'),

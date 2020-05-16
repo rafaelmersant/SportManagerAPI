@@ -5,8 +5,9 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserInfoSerializer
 import json
+import sys
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -45,6 +46,38 @@ class UserList(generics.ListCreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserInfo(generics.ListCreateAPIView):
+    serializer_class = UserInfoSerializer
+
+    def post(self, request):
+        try:
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            userId = int(body['id'])
+
+            user = User.objects.get(id=userId)
+            if user != None:
+                return Response({"id": user.id,
+                                 "email": user.email,
+                                 "password": user.password,
+                                 "name": user.name,
+                                 "user_role": user.user_role,
+                                 "user_hash": user.user_hash,
+                                 "athlete_id": user.athlete_id,
+                                 "created_user": user.created_user,
+                                 "creation_date": user.creation_date
+                                 },
+                                status=status.HTTP_200_OK)
+
+            return Response("null", status=status.HTTP_404_NOT_FOUND)
+
+        # except User.DoesNotExist:
+        #     return Response("Not Found", status=status.HTTP_404_NOT_FOUND)
+        except:
+            return Response(sys.exc_info()[0],
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserLogin(generics.ListCreateAPIView):
