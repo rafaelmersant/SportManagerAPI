@@ -3,14 +3,22 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 from .models import User
 from .serializers import UserSerializer
 import json
 
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 20
+
+
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'email', 'name',
                         'user_role', 'user_hash',
