@@ -2,6 +2,16 @@ from .models import Athlete, Parent, Document
 from rest_framework import serializers
 
 
+class AthleteSerializerFull(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Athlete
+        fields = ('id', 'first_name', 'last_name', 'email',
+                  'enrollment_year', 'enrollment_month',
+                  'category', 'creation_date',
+                  )
+
+
 class AthleteSerializer(serializers.HyperlinkedModelSerializer):
 
     # birthday = serializers.DateField(

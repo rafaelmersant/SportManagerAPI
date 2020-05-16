@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from .models import Athlete, Parent, Document
 from .serializers import AthleteSerializer, ParentSerializer, \
-    DocumentSerializer
+    DocumentSerializer, AthleteSerializerFull
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -23,12 +23,10 @@ class StandardResultsSetPaginationLevel2(PageNumberPagination):
 
 class AthleteListFull(generics.ListCreateAPIView):
     queryset = Athlete.objects.all()
-    serializer_class = AthleteSerializer
+    serializer_class = AthleteSerializerFull
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['id', 'first_name', 'last_name', 'email',
-                        'phone_number', 'medical_information', 'category',
-                        'parent', 'document']
-    search_fields = ['first_name', 'last_name', 'phone_number', 'email']
+    filterset_fields = ['id', 'first_name', 'last_name', 'email']
+    search_fields = ['first_name', 'last_name', 'email']
 
 
 class AthleteList(generics.ListCreateAPIView):
