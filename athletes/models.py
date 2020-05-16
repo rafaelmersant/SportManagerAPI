@@ -17,6 +17,7 @@ class Athlete(models.Model):
         max_length=255, null=True, blank=True)
     category = models.CharField(max_length=20, default="")
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
+    edited_date = models.DateTimeField(blank=True, null=True)
     created_user = models.EmailField(null=True, blank=True)
     objects = models.Manager()
 

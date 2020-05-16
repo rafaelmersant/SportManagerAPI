@@ -23,7 +23,7 @@ class AthleteSerializer(serializers.HyperlinkedModelSerializer):
                   'phone_number', 'photo', 'photo_filename', 'address',
                   'birthday', 'enrollment_year', 'enrollment_month',
                   'medical_information', 'age', 'category', 'creation_date',
-                  'created_user')
+                  'edited_date', 'created_user')
 
 
 class ParentSerializer(serializers.HyperlinkedModelSerializer):
