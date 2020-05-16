@@ -1,8 +1,9 @@
 from django.conf.urls import url
 from athletes.views import AthleteList, ParentList, \
-    DocumentList
+    DocumentList, AthleteListFull
 
 urlpatterns = [
+    url(r'^athletesFull/$', AthleteListFull.as_view(), name='athletesFull'),
     url(r'^athletes/$', AthleteList.as_view(), name='athletes'),
     url(r'^athletes/(?P<pk>[0-9]+)', AthleteList.as_view(),
         name='Athlete_byId'),

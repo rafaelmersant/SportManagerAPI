@@ -21,6 +21,16 @@ class StandardResultsSetPaginationLevel2(PageNumberPagination):
     max_page_size = 20
 
 
+class AthleteListFull(generics.ListCreateAPIView):
+    queryset = Athlete.objects.all()
+    serializer_class = AthleteSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['id', 'first_name', 'last_name', 'email',
+                        'phone_number', 'medical_information', 'category',
+                        'parent', 'document']
+    search_fields = ['first_name', 'last_name', 'phone_number', 'email']
+
+
 class AthleteList(generics.ListCreateAPIView):
     queryset = Athlete.objects.all()
     serializer_class = AthleteSerializer
