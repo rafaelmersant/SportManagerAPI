@@ -18,7 +18,7 @@ class Athlete(models.Model):
     category = models.CharField(max_length=20, default="")
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
     edited_date = models.DateTimeField(blank=True, null=True)
-    created_user = models.EmailField(null=True, blank=True)
+    created_user = models.CharField(max_length=50, null=True)
     objects = models.Manager()
 
     @property
@@ -40,7 +40,7 @@ class Parent(models.Model):
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
-    created_user = models.EmailField(null=True, blank=True)
+    created_user = models.CharField(max_length=50)
     objects = models.Manager()
 
     def __str__(self):
@@ -54,5 +54,5 @@ class Document(models.Model):
     document_url = models.CharField(max_length=255)
     document_filename = models.CharField(max_length=255, null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
-    created_user = models.EmailField(null=True, blank=True)
+    created_user = models.CharField(max_length=50)
     objects = models.Manager()

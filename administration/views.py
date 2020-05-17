@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from .models import User
-from .serializers import UserSerializer, UserInfoSerializer
+from .models import User, Document
+from .serializers import UserSerializer, UserInfoSerializer, DocSerializer
 import json
 import sys
 
@@ -107,3 +107,31 @@ class UserLogin(generics.ListCreateAPIView):
         except:
             return Response("Bad Request",
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+class DocumentList(generics.ListCreateAPIView):
+    queryset = Document.objects.all()
+    serializer_class = DocSerializer
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['id', 'description', 'category',
+                        'source', 'creation_date', ]
+
+    def delete(self, request, pk=None):
+        try:
+            doc = Document.objects.get(pk=pk)
+            doc.delete()
+        except:
+            return Response("the document was not found",
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        return Response("deleted", status=status.HTTP_200_OK)
+
+    def put(self, request, pk, format=None):
+        doc = Document.objects.get(pk=pk)
+        serializer = DocSerializer(doc, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

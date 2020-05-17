@@ -20,9 +20,9 @@ class UserInfoSerializer(serializers.HyperlinkedModelSerializer):
                   'athlete_id', 'password')
 
 
-class DocumentSerializer(serializers.HyperlinkedModelSerializer):
+class DocSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Document
-        fields = ('id', 'description', 'category', 'source', 'url_doc',
-                  'active', 'creation_date', 'created_user')
+        fields = ('id', 'description', 'category', 'source', 'doc_url',
+                  'doc_filename', 'active', 'creation_date', 'created_user')

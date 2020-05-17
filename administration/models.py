@@ -9,7 +9,7 @@ class User(models.Model):
     user_role = models.CharField(max_length=20, blank=True)
     athlete_id = models.IntegerField(default=0)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
-    created_user = models.EmailField()
+    created_user = models.CharField(max_length=50)
     objects = models.Manager()
 
     def __str__(self):
@@ -20,10 +20,11 @@ class Document(models.Model):
     description = models.CharField(max_length=100)
     category = models.CharField(max_length=50, default='DOC')
     source = models.CharField(max_length=50)
-    url_doc = models.CharField(max_length=255, blank=True, null=True)
+    doc_url = models.CharField(max_length=255, blank=True, null=True)
+    doc_filename = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
-    created_user = models.EmailField()
+    created_user = models.CharField(max_length=50, null=True)
     objects = models.Manager()
 
     def __str__(self):
