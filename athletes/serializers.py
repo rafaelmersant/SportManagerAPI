@@ -32,7 +32,7 @@ class ParentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Parent
-        fields = ('id', 'name', 'phone_number', 'email',
+        fields = ('id', 'name', 'phone_number', 'email', 'career',
                   'creation_date', 'created_user',
                   'athlete', 'athlete_id')
 

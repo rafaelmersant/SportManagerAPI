@@ -65,8 +65,9 @@ class ParentList(generics.ListCreateAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['id', 'name', 'phone_number', 'email', 'athlete_id']
-    search_fields = ['name', 'phone_number', 'email', 'athlete_id']
+    filterset_fields = ['id', 'name', 'phone_number',
+                        'email', 'career', 'athlete_id']
+    search_fields = ['name', 'phone_number', 'email', 'career', 'athlete_id']
 
     def delete(self, request, pk=None):
         try:

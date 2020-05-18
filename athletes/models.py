@@ -39,6 +39,7 @@ class Parent(models.Model):
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    career = models.CharField(max_length=100, null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True, blank=True)
     created_user = models.CharField(max_length=50)
     objects = models.Manager()
