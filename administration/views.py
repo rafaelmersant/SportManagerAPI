@@ -20,10 +20,11 @@ class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = StandardResultsSetPagination
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['id', 'email', 'name',
                         'user_role', 'user_hash',
                         'creation_date', 'athlete_id']
+    search_fields = ['name', 'email']
 
     def delete(self, request, pk=None):
         try:
