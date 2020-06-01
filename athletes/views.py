@@ -61,6 +61,18 @@ class AthleteList(generics.ListCreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class AthleteBirthdateList(generics.ListCreateAPIView):
+    serializer_class = AthleteSerializer
+
+    def get_queryset(self):
+        queryset = Athlete.objects.all()
+        month = self.request.query_params.get('month', None)
+        if month is not None:
+            queryset = queryset.filter(
+                birthday__month=month).order_by('birthday__day')
+        return queryset
+
+
 class ParentList(generics.ListCreateAPIView):
     queryset = Parent.objects.all()
     serializer_class = ParentSerializer
